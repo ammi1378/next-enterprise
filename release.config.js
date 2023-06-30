@@ -6,8 +6,8 @@ const releaseConfig = {
     [
       "@semantic-release/git",
       {
-        assets: ["./*.json"],
-        message: ["chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"],
+        assets: ["./assets/*.{json}"],
+        message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
       },
     ],
     "@semantic-release/github",
