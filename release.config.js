@@ -10,7 +10,12 @@ const releaseConfig = {
         message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
       },
     ],
-    "@semantic-release/github",
+    [
+      "@semantic-release/github",
+      {
+        assets: [{ path: "./assets/a.json", label: "s distribution" }],
+      },
+    ],
     "@semantic-release/changelog",
   ],
 }
