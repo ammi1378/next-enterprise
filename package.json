@@ -2,6 +2,7 @@
   "name": "next-enterprise",
   "version": "0.0.0",
   "private": true,
+  "repository": "https://github.com/ammi1378/next-enterprise",
   "scripts": {
     "dev": "cross-env FORCE_COLOR=1 next dev",
     "build": "next build",

@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  merge_group:
+    branches:
+      - main
+      - master
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "node_version=$(cat .github/nodejs.version)" >> $GITHUB_ENV
+      - name: "use node ${{ env.node_version }}"
+        uses: actions/setup-node@v3
+        with:
+          node-version: "${{ env.node_version }}"
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Create build
+        run: yarn build
+      - name: Generate release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
